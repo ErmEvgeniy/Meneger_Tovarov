@@ -1,4 +1,4 @@
-package repozitory;
+package ru.netology.repozitory;
 
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
@@ -8,13 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductManager {
-    Product[] products = new Product[4];
-    Product book1 = new Book(1, "Война и Мир", 1000, "Лев Толстой");
-    Product book2 = new Book(2, "Поколение П", 500, "В.Пелевин");
-    Product smartphone = new Smartphone(3, "iPhone", 50000, "Apple");
-    Product smartphone2 = new Smartphone(4, "Galaxy", 30000, "Samsung");
 
-    public ProductManager() {
+    Product[] products = new Product[4];
+
+    public ProductManager(Product book1, Product book2, Product smartphone, Product smartphone2) {
         products[0] = book1;
         products[1] = book2;
         products[2] = smartphone;
