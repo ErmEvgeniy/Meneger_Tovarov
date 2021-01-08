@@ -9,13 +9,16 @@ import java.util.List;
 
 public class ProductManager {
 
-    Product[] products = new Product[4];
 
-    public ProductManager(Product book1, Product book2, Product smartphone, Product smartphone2) {
-        products[0] = book1;
-        products[1] = book2;
-        products[2] = smartphone;
-        products[3] = smartphone2;
+    Product[] products = new Product[0];
+
+    public void addItems (Product item) {
+        int length = products.length + 1;
+        Product[] tmp = new Product[length];
+        System.arraycopy(products, 0, tmp, 0, products.length);
+        int lastIndex = tmp.length - 1;
+        tmp[lastIndex] = item;
+        products = tmp;
     }
 
     public List searchBy(String text) {
