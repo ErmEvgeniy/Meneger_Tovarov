@@ -5,6 +5,8 @@ import ru.netology.domain.Book;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -40,14 +42,18 @@ class ProductManagerTest {
         manager.addItems(smartphone4);
         manager.addItems(smartphone5);
 
-        List produkt = manager.searchBy("Galaxy");
-        Smartphone prod = (Smartphone) produkt.get(0);
+        Product[] produkt = manager.searchBy("Galaxy");
+        Smartphone prod = (Smartphone) produkt[0];
 
-        assertEquals(1, produkt.size());
+        assertEquals(1, produkt.length);
         assertEquals("Samsung", prod.getProducer());
 
-        Product [] expected = new Product[]{book1,book2,book3,book4,book5,smartphone1,smartphone2,smartphone3,smartphone4,smartphone5};
-        assertArrayEquals( manager.products, expected);
+        //тестирование метода поиска
+        Product[] arraySearchedProducts = manager.searchBy("Galaxy");
+        Product[] expectedProducts = new Product[]{smartphone2};
+
+        assertArrayEquals(expectedProducts, arraySearchedProducts);
+        
     }
 
     @Test
@@ -66,14 +72,17 @@ class ProductManagerTest {
         manager1.addItems(smartphone4);
         manager1.addItems(smartphone5);
 
-        List produkt = manager1.searchBy("С.Кинг");
-        Book prod = (Book) produkt.get(0);
+        Product[] produkt = manager1.searchBy("С.Кинг");
+        Book prod = (Book) produkt[0];
 
-        assertEquals(2, produkt.size());
+        assertEquals(2, produkt.length);
         assertEquals("С.Кинг", prod.getAuthor());
 
-        Product [] expected = new Product[]{book1,book2,book3,book4,book5,smartphone1,smartphone2,smartphone3,smartphone4,smartphone5};
-        assertArrayEquals( manager1.products, expected);
+        //тестирование метода поиска
+        Product[] arraySearchedProducts = manager1.searchBy("С.Кинг");
+        Product[] expectedProducts = new Product[]{book3, book5};
+
+        assertArrayEquals(expectedProducts, arraySearchedProducts);
     }
 
     @Test
@@ -92,11 +101,15 @@ class ProductManagerTest {
         manager2.addItems(smartphone4);
         manager2.addItems(smartphone5);
 
-        List produkt = manager2.searchBy("Анна Каренина");
-        assertEquals(0, produkt.size());
+        Product[] produkt = manager2.searchBy("Анна Каренина");
+        assertEquals(0, produkt.length);
 
-        Product [] expected = new Product[]{book1,book2,book3,book4,book5,smartphone1,smartphone2,smartphone3,smartphone4,smartphone5};
-        assertArrayEquals( manager2.products, expected);
+        //тестирование метода поиска
+        Product[] arraySearchedProducts = manager2.searchBy("Анна Каренина");
+        Product[] expectedProducts = new Product[]{};
+
+        assertArrayEquals(expectedProducts, arraySearchedProducts);
+
     }
 
     @Test
@@ -115,10 +128,13 @@ class ProductManagerTest {
         manager3.addItems(smartphone4);
         manager3.addItems(smartphone5);
 
-        List produkt = manager3.searchBy("1984");
-        assertEquals(2, produkt.size());
+        Product[] produkt = manager3.searchBy("1984");
+        assertEquals(2, produkt.length);
 
-        Product [] expected = new Product[]{book1,book2,book3,book4,book5,smartphone1,smartphone2,smartphone3,smartphone4,smartphone5};
-        assertArrayEquals( manager3.products, expected);
+        //тестирование метода поиска
+        Product[] arraySearchedProducts = manager3.searchBy("1984");
+        Product[] expectedProducts = new Product[]{book4,smartphone3};
+
+        assertArrayEquals(expectedProducts, arraySearchedProducts);
     }
 }

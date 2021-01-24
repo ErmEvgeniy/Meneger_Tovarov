@@ -21,15 +21,19 @@ public class ProductManager {
         products = tmp;
     }
 
-    public List searchBy(String text) {
+    public Product[] searchBy(String text) {
 
-        List<Product> result = new ArrayList();
+        List<Product> result = new ArrayList<>();
         for (Product product : products) {
             if (matches(product, text)) {
                 result.add(product);
             }
         }
-        return result;
+        Product[] resultArray = new Product[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            resultArray[i] = result.get(i);
+        }
+        return resultArray;
     }
 
     boolean matches(Product product, String search) {
